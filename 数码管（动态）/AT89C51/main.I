@@ -8,7 +8,7 @@
  
  
   
-#line 1 "D:\Keil_C51\C51\BIN\..\INC\Atmel\reg51.h" /0
+#line 1 "C:\Keil_v5\C51\BIN\..\INC\Atmel\reg51.h" /0
 
 
 
@@ -103,7 +103,7 @@
 #line 8 "..\main.c" /0
  
   
-#line 1 "D:\Keil_C51\C51\BIN\..\INC\stdio.h" /0
+#line 1 "C:\Keil_v5\C51\BIN\..\INC\stdio.h" /0
 
 
 
@@ -156,7 +156,18 @@
  void main(void)
  { 
  while(1){
- digital_pile_show_number(1,2,8,1);
+ P1 =wei[0];
+ P2 = ~duan[0];
+ delay();
+ P1 =wei[1];
+ P2 = ~duan[0];
+ delay();
+ P1 =wei[2];
+ P2 = ~duan[1];
+ delay();
+ P1 =wei[3];
+ P2 = ~duan[1];
+ delay();
  }
  }
  

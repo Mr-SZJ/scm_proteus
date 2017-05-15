@@ -11,20 +11,22 @@
 sbit K = P2^0;
 sbit LED = P2^7;
 
+void delay();
+void fun(){
+	while(1){
+		if(K == 0){
+			delay();
+			if(K == 0)
+			LED = ~LED;
+			}
+		}
+	
+	}
 void delay(){
-	int i = 1000;
+	int i = 20000;
 	while(i--);
 	}
 void main(void)
  { 
-  while(1){
-	  if(K == 0){
-		  LED = 0;
-		  
-		  }
-		  else{
-			  LED = 1;
-			  }
-	  delay();
-	  }
+  fun();
  }

@@ -21,6 +21,7 @@ void static_pile(unsigned char number){
 
 void main(void)
  { 
-  static_pile(7);
+  //static_pile(7);
+	P2 = 0xc0; 
  }
  

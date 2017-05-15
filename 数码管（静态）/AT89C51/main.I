@@ -8,7 +8,7 @@
  
  
   
-#line 1 "D:\Keil_v5\C51\BIN\..\INC\Atmel\reg51.h" /0
+#line 1 "C:\Keil_v5\C51\BIN\..\INC\Atmel\reg51.h" /0
 
 
 
@@ -103,7 +103,7 @@
 #line 8 "..\main.c" /0
  
   
-#line 1 "D:\Keil_v5\C51\BIN\..\INC\stdio.h" /0
+#line 1 "C:\Keil_v5\C51\BIN\..\INC\stdio.h" /0
 
 
 
@@ -161,8 +161,11 @@
  
  }
  
+ unsigned char show[2] = {0xc0,0xf9};
  void main(void)
  { 
- static_pile(7);
+ 
+ 
+ P2 = show[1];
  }
  

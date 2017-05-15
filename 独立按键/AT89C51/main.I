@@ -8,7 +8,7 @@
  
  
   
-#line 1 "D:\Keil_v5\C51\BIN\..\INC\Atmel\reg51.h" /0
+#line 1 "C:\Keil_v5\C51\BIN\..\INC\Atmel\reg51.h" /0
 
 
 
@@ -103,7 +103,7 @@
 #line 8 "..\main.c" /0
  
   
-#line 1 "D:\Keil_v5\C51\BIN\..\INC\stdio.h" /0
+#line 1 "C:\Keil_v5\C51\BIN\..\INC\stdio.h" /0
 
 
 
@@ -153,20 +153,22 @@
  sbit K = P2^0;
  sbit LED = P2^7;
  
+ void delay();
+ void fun(){
+ while(1){
+ if(K == 0){
+ delay();
+ if(K == 0)
+ LED = ~LED;
+ }
+ }
+ 
+ }
  void delay(){
- int i = 1000;
+ int i = 20000;
  while(i--);
  }
  void main(void)
  { 
- while(1){
- if(K == 0){
- LED = 0;
- 
- }
- else{
- LED = 1;
- }
- delay();
- }
+ fun();
  }
