@@ -150,32 +150,84 @@
 #line 9 "..\main.c" /0
  
  
- unsigned char tmp = 0;
- sbit LED = P2^0;
+ 
+ sbit RS = P2^0;
+ sbit RW = P2^1;
+ sbit E = P2^2;
+ 
+  unsigned char code tab[] = {"123456789"};
+ 
+ void Delayms(unsigned int ms)
+ {
+  unsigned char i;
+ while(ms--)
+ {
+ for(i=0;i<120;i++);
+ }
+ }
+ 
+ 
+  unsigned char Busy_Check()
+ {
+  unsigned char LCD_Status;
+ RS = 0;
+ RW = 1;
+ E = 1;
+ Delayms(1);
+ LCD_Status = P1;
+ E = 0;
+ return LCD_Status;
+ }
+ 
+ void writeCMD(unsigned char cmd){
+  unsigned char m;
+ while((Busy_Check()&0x80)==0x80);
+ RW = 0; 
+ RS = 0; 
+ P1 = cmd;
+ for(m-0;m<=2;m++);
+ E = 1; 
+ for(m-0;m<=2;m++);
+ E = 0; 
+ }
+ 
+ void writeData(unsigned char c){
+  unsigned char m;
+ while((Busy_Check()&0x80)==0x80);
+ RW = 0;
+ RS = 1;
+ P1 = c;
+ for(m-0;m<=2;m++);
+ E = 1; 
+ for(m-0;m<=2;m++);
+ E = 0; 
+ }
+ 
  
  void init(){
- TMOD = 0x01;
- TH0 = (65536-50000)/256; 
- TL0 = (65536-50000)%256;
- ET0 = 1;
- EA = 1;
- TR0 = 1;
+ RW = 0; 
+ E = 0; 
+ writeCMD(0x38);
+ writeCMD(0x0c);
+ writeCMD(0x06);
+ writeCMD(0x01);
+ }
+ 
+ void show_char(unsigned char row,unsigned char column,unsigned char c){
+  unsigned char m;
+ writeCMD(0x80+row*0x40+column); 
+ for(m=0;m<252;m++);
+ writeData(c);
+ 
  }
  void main(void)
  { 
+  unsigned char i;
+  unsigned int j;
  init();
+ for(i=0;i<=9;i++){
+ show_char(0,i,tab[i]);
+ show_char(1,15-i,tab[i]); 
+ }
  while(1);
- }
- 
- void inte() interrupt 1
- {
- if(tmp == 10){
- tmp = 0;
- LED = ~LED;
- }
- else{
- tmp++; 
- }
- TH0 = (65536-50000)/256; 
- TL0 = (65536-50000)%256;
  }

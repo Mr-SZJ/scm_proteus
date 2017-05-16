@@ -69,7 +69,7 @@ void  delay(uchar x)
  
     	
      dis_buf = key;	    //键值入显示缓存
-     dis_buf = dis_buf & 0x0f;
+     //dis_buf = dis_buf & 0x0f;
  
  }
 
@@ -102,7 +102,7 @@ main()
     while(1)
     { 
        keydown();	 //调用按键判断检测程序
-	   P0 = LED7Code[dis_buf%16]&0x7f;     //LED7 0x7f为小数点 共阴和共阳此处也是不一样;  %16表示输出16进制
+	   P0 = LED7Code[(dis_buf)%16]&0x7f;     //LED7 0x7f为小数点 共阴和共阳此处也是不一样;  %16表示输出16进制
     
     }
   }   

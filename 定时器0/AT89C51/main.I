@@ -8,7 +8,7 @@
  
  
   
-#line 1 "D:\Keil_C51\C51\BIN\..\INC\Atmel\reg51.h" /0
+#line 1 "C:\Keil_v5\C51\BIN\..\INC\Atmel\reg51.h" /0
 
 
 
@@ -103,7 +103,7 @@
 #line 8 "..\main.c" /0
  
   
-#line 1 "D:\Keil_C51\C51\BIN\..\INC\stdio.h" /0
+#line 1 "C:\Keil_v5\C51\BIN\..\INC\stdio.h" /0
 
 
 
@@ -149,33 +149,24 @@
  
 #line 9 "..\main.c" /0
  
- 
- unsigned char tmp = 0;
- sbit LED = P2^0;
- 
- void init(){
+ int duan[]={0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};
+ unsigned char number = 0;
+ void InitTimer0(void)
+ {
  TMOD = 0x01;
- TH0 = (65536-50000)/256; 
- TL0 = (65536-50000)%256;
- ET0 = 1;
+ TH0 = 0x0FC;
+ TL0 = 0x18;
  EA = 1;
+ ET0 = 1;
  TR0 = 1;
  }
+ 
  void main(void)
  { 
- init();
- while(1);
+ InitTimer0();
+ P2 = ~duan[number];
  }
  
- void inte() interrupt 1
- {
- if(tmp == 10){
- tmp = 0;
- LED = ~LED;
- }
- else{
- tmp++; 
- }
- TH0 = (65536-50000)/256; 
- TL0 = (65536-50000)%256;
+ void ljj() interrupt 1{
+ 
  }

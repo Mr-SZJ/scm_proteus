@@ -8,7 +8,7 @@
  
  
   
-#line 1 "D:\Keil_v5\C51\BIN\..\INC\Atmel\reg51.h" /0
+#line 1 "D:\Keil_C51\C51\BIN\..\INC\Atmel\reg51.h" /0
 
 
 
@@ -103,7 +103,7 @@
 #line 8 "..\main.c" /0
  
   
-#line 1 "D:\Keil_v5\C51\BIN\..\INC\stdio.h" /0
+#line 1 "D:\Keil_C51\C51\BIN\..\INC\stdio.h" /0
 
 
 
@@ -161,14 +161,14 @@
  { 
  while(1){
  if(K1 == 0){
- delay(100);
+ delay(15000);
  if(K1 == 0){
  num ++;
  }
  }
  
  if(K2 == 0){
- delay(100);
+ delay(15000);
  if(K2 == 0){
  num --;
  }
@@ -180,7 +180,6 @@
  num = 9;
  }
  P2 = duan[num];
- delay(100000);
- 
  }
+ 
  }

@@ -1,8 +1,14 @@
 
 #line 1 "..\main.c" /0
+
+
+
+
+
+ 
  
   
-#line 1 "D:\Keil_C51\C51\BIN\..\INC\Atmel\reg51.h" /0
+#line 1 "C:\Keil_v5\C51\BIN\..\INC\Atmel\reg51.h" /0
 
 
 
@@ -94,114 +100,92 @@
  sbit RI   = 0x98;
  
  
-#line 2 "..\main.c" /0
+#line 8 "..\main.c" /0
  
- 
- 
- 
- 
-  unsigned char  dis_buf;             
-  unsigned char  temp;
-  unsigned char  key;                 
- void delay(unsigned char x);       
- 
- 
- unsigned char code LED7Code[] = {~0x3F,~0x06,~0x5B,~0x4F,~0x66,~0x6D,~0x7D,~0x07,~0x7F,~0x6F,~0x77,~0x7C,~0x39,~0x5E,~0x79,~0x71};
- 
+  
+#line 1 "C:\Keil_v5\C51\BIN\..\INC\stdio.h" /0
+
+
 
 
 
 
  
  
- void  delay(unsigned char x)
- { unsigned char j;
- while((x--)!=0)   
- { for(j=0;j<125;j++)
- {;}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ typedef unsigned int size_t;
+ 
+ 
+ #pragma SAVE
+ #pragma REGPARMS
+ extern char _getkey (void);
+ extern char getchar (void);
+ extern char ungetchar (char);
+ extern char putchar (char);
+ extern int printf   (const char *, ...);
+ extern int sprintf  (char *, const char *, ...);
+ extern int vprintf  (const char *, char *);
+ extern int vsprintf (char *, const char *, char *);
+ extern char *gets (char *, int n);
+ extern int scanf (const char *, ...);
+ extern int sscanf (char *, const char *, ...);
+ extern int puts (const char *);
+ 
+ #pragma RESTORE
+ 
+ 
+ 
+#line 9 "..\main.c" /0
+ 
+ int duan[]={0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};
+ sbit K1 = P1^0;
+ sbit K2 = P1^7;
+ char num = 0;
+ 
+ void delay(unsigned int i){
+ while(i--);
  }
- }
- 
-
-
-
-
-
- 
- 
- void  keyscan(void)
- { 	temp = 0;
- P1=0xF0;                  
- delay(1);				  
- temp=P1;                  
- temp=temp&0xF0;			  
- temp=~((temp>>4)|0xF0);	  
- if(temp==1)	   
- key=1;   
- else if(temp==2)    
- key=2;	   
- else if(temp==4)    
- key=3;	  
- else if(temp==8)    
- key=4;	   
- else
- key = 16;
- 
- P1=0x0F;              
- delay(1);			  
- temp=P1;              
- temp=temp&0x0F;
- temp=~(temp|0xF0);
- if(temp==1)				    
- key=key+0;
- else if(temp==2)		    
- key=key+4; 
- else if(temp==4)    
- key=key+8;
- else if(temp==8)    
- key=key+12;
- else
- key = 16;
- 
- 
- dis_buf = key;	     
- 
- 
- }
- 
-
-
-
-
- 
- 
- void  keydown(void)
- {  
- P1=0xF0;        
- if(P1!=0xF0)   
- {
- keyscan();   
- }
- }
- 
-
-
-
-
- 
- main()
- {
- P0=0xFF;                     
- P1=0xFF;                     
- delay(10);                   
- 
- while(1)
+ void main(void)
  { 
- keydown();	  
- P0 = LED7Code[(dis_buf)%16]&0x7f;      
- 
+ while(1){
+ if(K1 == 0){
+ delay(5000);
+ if(K1 == 0){
+ num ++;
  }
- }   
+ }
  
+ if(K2 == 0){
+ delay(5000);
+ if(K2 == 0){
+ num --;
+ }
+ }
+ if(num > 99){
+ num = 0;
+ }
+ if(num < 0){
+ num = 99;
+ }
  
+ P3 = 0x08;
+ P2 = ~duan[num%10];
+ delay(1000);
  
+ P3 = 0x04;
+ P2 = ~duan[num/10];
+ delay(1000);
+ }
+ }

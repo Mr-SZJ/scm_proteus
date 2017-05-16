@@ -19,26 +19,31 @@ void main(void)
  { 
 	while(1){
 		if(K1 == 0){
-		 delay(100);
+		 delay(5000);
 		if(K1 == 0){
 			num ++;
 			}
 		}
 		
 	if(K2 == 0){
-		 delay(100);
+		 delay(5000);
 		if(K2 == 0){
 			num --;
 			}
 		}
-	if(num > 9){
+	if(num > 99){
 		num = 0;
 		}
 	if(num < 0){
-		num = 9;
+		num = 99;
 		}
-	P2 = duan[num];
-	delay(100000);
-		
+	//最后数码管显示
+	P3 = 0x08;
+	P2 = ~duan[num%10];
+	delay(1000);
+	//倒数第二数码管显示	
+	P3 = 0x04;
+	P2 = ~duan[num/10];
+	delay(1000);
 	}
  }
