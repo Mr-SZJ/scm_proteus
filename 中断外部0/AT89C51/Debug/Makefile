@@ -16,9 +16,9 @@ CCFLAGS=ROM(SMALL) BROWSE DEBUG CODE OBJECTEXTEND PREPRINT
 CC=C51.exe
 LD=BL51.exe
 ASM=A51.exe
-#  J:/单片机课程仿真/中断0/AT89C51/Debug/Debug.OMF: TOOL=LD
-#     J:/单片机课程仿真/中断0/AT89C51/Debug/main.OBJ: TOOL=CC
-#        J:/单片机课程仿真/中断0/AT89C51/main.c
+#  H:/单片机课程仿真/中断外部0/AT89C51/Debug/Debug.OMF: TOOL=LD
+#     H:/单片机课程仿真/中断外部0/AT89C51/Debug/main.OBJ: TOOL=CC
+#        H:/单片机课程仿真/中断外部0/AT89C51/main.c
 
 # Build tree:
 all:	Debug

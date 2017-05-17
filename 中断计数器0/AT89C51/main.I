@@ -8,7 +8,7 @@
  
  
   
-#line 1 "C:\Keil_v5\C51\BIN\..\INC\Atmel\reg51.h" /0
+#line 1 "D:\Keil_C51\C51\BIN\..\INC\Atmel\reg51.h" /0
 
 
 
@@ -103,7 +103,7 @@
 #line 8 "..\main.c" /0
  
   
-#line 1 "C:\Keil_v5\C51\BIN\..\INC\stdio.h" /0
+#line 1 "D:\Keil_C51\C51\BIN\..\INC\stdio.h" /0
 
 
 
@@ -149,87 +149,26 @@
  
 #line 9 "..\main.c" /0
  
+ sbit LED = P2^0;
  
- 
- 
- sbit RS = P2^0;
- sbit RW = P2^1;
- sbit E = P2^2;
- 
-  unsigned char code tab[] = {"Hello 137"};
- 
- void Delayms(unsigned int ms)
+ void InitTimer0(void)
  {
-  unsigned char i;
- while(ms--)
- {
- for(i=0;i<120;i++);
- }
- }
- 
- 
- 
-  unsigned char Busy_Check()
- {
-  unsigned char LCD_Status;
- RS = 0;
- RW = 1;
- E = 1;
- Delayms(1);
- LCD_Status = P0;
- E = 0;
- return LCD_Status;
+ TMOD = 0x05;
+ TH0 = 0x0FF;
+ TL0 = 0x0FE;
+ EA = 1;
+ ET0 = 1;
+ TR0 = 1;
  }
  
- void writeCMD(unsigned char cmd){
-  unsigned char m;
- while((Busy_Check()&0x80)==0x80);
- RW = 0; 
- RS = 0; 
- P1 = cmd;
- for(m-0;m<=2;m++);
- E = 1; 
- for(m-0;m<=2;m++);
- E = 0; 
- }
- 
- void writeData(unsigned char c){
-  unsigned char m;
- while((Busy_Check()&0x80)==0x80);
- RW = 0;
- RS = 1;
- P1 = c;
- for(m-0;m<=2;m++);
- E = 1; 
- for(m-0;m<=2;m++);
- E = 0; 
- }
- 
- 
- void init(){
- RW = 0; 
- E = 0; 
- writeCMD(0x38);
- writeCMD(0x0c);
- writeCMD(0x06);
- writeCMD(0x01);
- }
- 
- void show_char(unsigned char row,unsigned char column,unsigned char c){
-  unsigned char m;
- writeCMD(0x80+row*0x40+column); 
- for(m=0;m<252;m++);
- writeData(c);
- 
- }
  void main(void)
  { 
-  unsigned char i;
-  unsigned int j;
- init();
- for(i=0;i<=9;i++){
- show_char(0,i,tab[i]);
- show_char(1,15-i,tab[i]); 
+ InitTimer0();
+ while (1)
+ ;
  }
- while(1);
+ void to(void) interrupt 1{
+ LED = ~LED;
+ TH0 = 0x0FF;
+ TL0 = 0x0FE;
  }

@@ -7,18 +7,18 @@ PROJECT =
 MCU = AT89C51
 COMPILER = "Keil for 8051"
 TARGET = Debug
-SHELL = C:\Windows\system32\cmd.exe
+SHELL = C:\WINDOWS\system32\cmd.exe
 
 ## Tools general options
-CCFLAGS=ROM(SMALL) BROWSE DEBUG CODE OBJECTEXTEND PREPRINT
+CCFLAGS=ROM(LARGE) BROWSE DEBUG CODE OBJECTEXTEND PREPRINT
 
 ## Processing Tools
 CC=C51.exe
 LD=BL51.exe
 ASM=A51.exe
-#  H:/单片机课程仿真/定时器0/AT89C51/Debug/Debug.OMF: TOOL=LD
-#     H:/单片机课程仿真/定时器0/AT89C51/Debug/main.OBJ: TOOL=CC
-#        H:/单片机课程仿真/定时器0/AT89C51/main.c
+#  K:/单片机课程仿真/中断定时器0门控/AT89C51/Debug/Debug.OMF: TOOL=LD
+#     K:/单片机课程仿真/中断定时器0门控/AT89C51/Debug/main.OBJ: TOOL=CC
+#        K:/单片机课程仿真/中断定时器0门控/AT89C51/main.c
 
 # Build tree:
 all:	Debug

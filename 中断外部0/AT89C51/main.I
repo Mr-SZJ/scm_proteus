@@ -1,14 +1,7 @@
 
 #line 1 "..\main.c" /0
-
-
-
-
-
- 
- 
   
-#line 1 "D:\Keil_C51\C51\BIN\..\INC\Atmel\reg51.h" /0
+#line 1 "G:\Keil_C51\C51\BIN\..\INC\Atmel\reg51.h" /0
 
 
 
@@ -100,70 +93,18 @@
  sbit RI   = 0x98;
  
  
-#line 8 "..\main.c" /0
- 
-  
-#line 1 "D:\Keil_C51\C51\BIN\..\INC\stdio.h" /0
-
-
-
-
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- typedef unsigned int size_t;
- 
- 
- #pragma SAVE
- #pragma REGPARMS
- extern char _getkey (void);
- extern char getchar (void);
- extern char ungetchar (char);
- extern char putchar (char);
- extern int printf   (const char *, ...);
- extern int sprintf  (char *, const char *, ...);
- extern int vprintf  (const char *, char *);
- extern int vsprintf (char *, const char *, char *);
- extern char *gets (char *, int n);
- extern int scanf (const char *, ...);
- extern int sscanf (char *, const char *, ...);
- extern int puts (const char *);
- 
- #pragma RESTORE
- 
- 
- 
-#line 9 "..\main.c" /0
+#line 1 "..\main.c" /0
  
  sbit led = P2^0;
- 
- 
- void init(){
- IT0 = 1; 
- EX0 = 1; 
- EA = 1; 
- }
  void main(void)
  { 
- init();
+ IT1 = 1; 
+ EX1 = 1; 
+ EA = 1; 
  while(1);
  }
- 
- 
- void int0() interrupt 0{
+ void int0() interrupt 2
+ {
  led = ~led;
  }
+ 

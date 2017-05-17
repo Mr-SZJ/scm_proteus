@@ -8,7 +8,7 @@
  
  
   
-#line 1 "D:\Keil_C51\C51\BIN\..\INC\Atmel\reg51.h" /0
+#line 1 "G:\Keil_C51\C51\BIN\..\INC\Atmel\reg51.h" /0
 
 
 
@@ -103,7 +103,7 @@
 #line 8 "..\main.c" /0
  
   
-#line 1 "D:\Keil_C51\C51\BIN\..\INC\stdio.h" /0
+#line 1 "G:\Keil_C51\C51\BIN\..\INC\stdio.h" /0
 
 
 

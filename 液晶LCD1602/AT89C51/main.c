@@ -9,11 +9,12 @@
 #include <stdio.h>
 #define uchar unsigned char
 #define uint unsigned int
+#define LCD P1
 sbit RS = P2^0;
 sbit RW = P2^1;
 sbit E = P2^2;
 
-uchar code tab[] = {"123456789"};
+uchar code tab[] = {"Hello 137"};
 
 void Delayms(uint ms)
 {
@@ -89,4 +90,4 @@ void main(void)
 		show_char(1,15-i,tab[i]); 
 	 }
 	 while(1);
- }
+}
