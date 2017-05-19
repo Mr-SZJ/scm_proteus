@@ -46,9 +46,9 @@ void writeCMD(uchar cmd){
 	RS = 0;//0代表命令，1代表数据
 	P1 = cmd;
 	for(m-0;m<=2;m++);
-	E = 1;//液晶失能
+	E = 1;//液晶使能
 	for(m-0;m<=2;m++);
-	E = 0;//液晶使能
+	E = 0;
 }
 
 void writeData(uchar c){
@@ -58,9 +58,9 @@ void writeData(uchar c){
 	RS = 1;
 	P1 = c;
 	for(m-0;m<=2;m++);
-	E = 1;//液晶失能
+	E = 1;//液晶使能
 	for(m-0;m<=2;m++);
-	E = 0;//液晶使能
+	E = 0;
 }
 
 //液晶初始化,硬件固定初始化步骤，不用记

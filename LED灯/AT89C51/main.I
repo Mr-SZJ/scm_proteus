@@ -1,8 +1,8 @@
 
-#line 1 "..\main.c" /0
+#line 1 "J:\单片机课程仿真\LED灯\AT89C51\main.c" /0
  
   
-#line 1 "D:\Keil_v5\C51\BIN\..\INC\reg52.h" /0
+#line 1 "D:\Keil_C51\C51\INC\reg52.h" /0
 
 
 
@@ -117,11 +117,13 @@
  sbit CP_RL2 = T2CON^0;
  
  
-#line 2 "..\main.c" /0
+#line 2 "J:\单片机课程仿真\LED灯\AT89C51\main.c" /0
  
  
  sbit led = P2^0;
+ unsigned char i;
  void main(){
- led = 0;
+ i = P0;
+ led = 0; 
  
  }

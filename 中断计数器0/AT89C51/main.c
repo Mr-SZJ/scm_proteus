@@ -11,7 +11,7 @@ sbit LED = P2^0;
 
 void InitTimer0(void)
 {
-    TMOD = 0x05;
+    TMOD = 0x0d;//门控GATE=1，CT=1计数器功能，工作方式1
     TH0 = 0x0FF;
     TL0 = 0x0FE;
     EA = 1;

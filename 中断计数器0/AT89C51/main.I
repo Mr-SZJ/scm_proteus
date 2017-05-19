@@ -153,7 +153,7 @@
  
  void InitTimer0(void)
  {
- TMOD = 0x05;
+ TMOD = 0x0d; 
  TH0 = 0x0FF;
  TL0 = 0x0FE;
  EA = 1;
