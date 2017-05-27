@@ -1,5 +1,5 @@
 #include <reg51.h>
-#define LED P1
+#define OUT P1
 
 void main(){
 	//设置波特率，由定时器1的溢出率决定
@@ -11,17 +11,19 @@ void main(){
 
   //设置串口工作方式
   SCON=0x50; //方式1，允许接收
-  PCON=0x00;
-  TI= 0;
-  RI= 0;
+  //PCON=0x00;
+  //TI= 0;
+  //RI= 0;
   ES=1;
   EA=1;
 	while(1);
 }
 
 void receive() interrupt 4{
+	if(RI == 1){
 	EA = 0;
-	LED = SBUF;
+	OUT = SBUF;
 	RI = 0;
 	EA = 1;
+	}
 }
