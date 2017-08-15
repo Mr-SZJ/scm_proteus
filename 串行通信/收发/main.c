@@ -7,7 +7,8 @@ void InitUART(void)
 		//外部中断1
 	  EX1 = 1;//分开关
 		IT1 = 1;//下降沿触发
-	
+
+	PX1 = 1;
     TMOD = 0x20;//0010 0000  定时器1工作方式2，8位自动装载初值的定时器
     SCON = 0x50;//0101 0000 串口控制寄存器，工作方式1允许接收
     TH1 = 0xF3;//初值
@@ -30,7 +31,7 @@ void EXTI0Interrupt(void) interrupt 2
 	LED = ~LED;
 	i++;
 	if(i > 9) i=0;
-	SendOneByte(i);
+	SBUF = i;
 }
 void UARTInterrupt(void) interrupt 4
 {

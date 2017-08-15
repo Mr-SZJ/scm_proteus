@@ -1,2 +1,2 @@
 Keil项目：https://github.com/fanzlei/scm/archive/master.zip
-Proteus8.0仿真：https://github.com/fanzlei/scm_proteus/archive/master.zip
+Proteus8仿真：https://github.com/fanzlei/scm_proteus/archive/master.zip
